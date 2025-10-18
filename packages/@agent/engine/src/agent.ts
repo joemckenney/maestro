@@ -141,24 +141,6 @@ export async function runAgentLoop(
   return { state, responses };
 }
 
-export async function query(
-  config: AgentConfig,
-  message: string,
-  toolHandler?: ToolHandler
-): Promise<string> {
-  let state = createAgentState(config);
-  state = addUserMessage(state, message);
-
-  if (toolHandler && config.tools && config.tools.length > 0) {
-    const { responses } = await runAgentLoop(state, toolHandler);
-    const lastResponse = responses[responses.length - 1];
-    return extractTextContent(lastResponse);
-  }
-
-  const result = await runAgent(state);
-  return extractTextContent(result.response);
-}
-
 export function extractTextContent(response: Anthropic.Messages.Message): string {
   return response.content
     .filter((block) => block.type === 'text')

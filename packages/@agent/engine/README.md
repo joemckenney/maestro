@@ -25,18 +25,19 @@ pnpm add @agent/engine
 ### Simple Query
 
 ```typescript
-import { query } from '@agent/engine';
+import { createAgentState, addUserMessage, runAgent, extractTextContent } from '@agent/engine';
 
-const response = await query(
-  {
-    apiKey: process.env.ANTHROPIC_API_KEY!,
-    model: 'claude-3-5-sonnet-20241022',
-    system: 'You are a helpful assistant.',
-  },
-  'What is the capital of France?'
-);
+// Create initial state
+let state = createAgentState({
+  apiKey: process.env.ANTHROPIC_API_KEY!,
+  model: 'claude-3-5-sonnet-20241022',
+  system: 'You are a helpful assistant.',
+});
 
-console.log(response); // "The capital of France is Paris."
+// Run a single query
+state = addUserMessage(state, 'What is the capital of France?');
+const result = await runAgent(state);
+console.log(extractTextContent(result.response)); // "The capital of France is Paris."
 ```
 
 ### Multi-Turn Conversation
@@ -184,10 +185,6 @@ Executes tool calls using the provided handler.
 #### `runAgentLoop(initialState: AgentState, toolHandler: ToolHandler, options?): Promise<Result>`
 
 Runs an agentic loop, automatically executing tools until completion.
-
-#### `query(config: AgentConfig, message: string, toolHandler?: ToolHandler): Promise<string>`
-
-Simple helper for one-shot queries.
 
 ### Tool Functions
 

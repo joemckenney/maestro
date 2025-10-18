@@ -12,7 +12,6 @@ export {
   runAgent,
   executeTools,
   runAgentLoop,
-  query,
   extractTextContent,
 } from './agent.js';
 
