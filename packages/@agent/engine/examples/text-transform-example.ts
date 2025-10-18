@@ -44,12 +44,12 @@ async function main() {
 
   state = addUserMessage(
     state,
-    'Can you convert "Hello World" to uppercase and then slugify it?'
+    'Can you convert "Hello World" to uppercase, reverse it, and then slugify it?'
   );
 
   const toolHandler = createToolHandler(registry);
 
-  const { responses } = await runAgentLoop(state, toolHandler, {
+  const { responses, state: finalState } = await runAgentLoop(state, toolHandler, {
     onIteration: (iteration, result) => {
       console.log(`\nIteration ${iteration + 1}:`);
       if (result.wantsToolUse) {
@@ -63,6 +63,17 @@ async function main() {
   const finalResponse = responses[responses.length - 1];
   console.log('\n=== Final Response ===');
   console.log(extractTextContent(finalResponse));
+
+
+  console.log('\n=== Final config ===');
+  console.log(finalState.config)
+  
+  console.log('\n=== Messages ===');
+  finalState.messages.forEach(message => {
+    console.log(JSON.stringify(message, null, 2))
+  })
+
+
 }
 
 main().catch(console.error);
