@@ -1,0 +1,21 @@
+{
+  "name": "@tools/calculator",
+  "version": "0.1.0",
+  "description": "Calculator tool implemented in Rust/WASM",
+  "type": "module",
+  "main": "./dist/calculator.js",
+  "types": "./dist/calculator.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/calculator.d.ts",
+      "default": "./dist/calculator.js"
+    }
+  },
+  "scripts": {
+    "build": "wasm-pack build --target bundler --out-dir dist",
+    "format": "cargo fmt"
+  },
+  "files": [
+    "dist"
+  ]
+}

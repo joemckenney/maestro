@@ -1,0 +1,29 @@
+{
+  "name": "@tools/text-transform",
+  "version": "0.1.0",
+  "description": "Text transformation tool implemented in TypeScript/Node.js",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsgo",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "@tools/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@maestro/tsconfig": "workspace:*",
+    "@types/node": "^22.10.5",
+    "@typescript/native-preview": "7.0.0-dev.20251017.1"
+  },
+  "files": [
+    "dist"
+  ]
+}

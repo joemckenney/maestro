@@ -1,0 +1,33 @@
+{
+  "name": "@agent/engine",
+  "version": "0.1.0",
+  "description": "Agent engine powered by Anthropic's Claude API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsgo",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.2",
+    "@tools/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@maestro/tsconfig": "workspace:*",
+    "@tools/schema": "workspace:*",
+    "@tools/text-transform": "workspace:*",
+    "@types/node": "^22.10.5",
+    "@typescript/native-preview": "7.0.0-dev.20251017.1",
+    "tsx": "^4.20.6"
+  },
+  "files": [
+    "dist"
+  ]
+}

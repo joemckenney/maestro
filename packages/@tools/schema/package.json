@@ -1,0 +1,29 @@
+{
+  "name": "@tools/schema",
+  "version": "0.0.1",
+  "description": "JSON schemas and TypeScript types for tool interface",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schemas/*": "./src/schemas/*.json"
+  },
+  "scripts": {
+    "generate": "json2ts -i src/schemas -o src/generated",
+    "build": "pnpm run generate && tsc",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@maestro/tsconfig": "workspace:*",
+    "json-schema-to-typescript": "^15.0.3",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  }
+}

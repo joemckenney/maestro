@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "tool-execute-output",
+  "type": "object",
+  "title": "Tool Execute Output",
+  "description": "Output result from tool execution",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the tool execution succeeded"
+    },
+    "data": {
+      "description": "The result data if successful (any valid JSON value)",
+      "oneOf": [
+        { "type": "null" },
+        { "type": "boolean" },
+        { "type": "number" },
+        { "type": "string" },
+        { "type": "array" },
+        { "type": "object" }
+      ]
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if execution failed"
+    }
+  },
+  "required": ["success"],
+  "additionalProperties": false
+}
